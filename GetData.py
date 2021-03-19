@@ -46,7 +46,7 @@ for m in Config.months:
     ELSE NULL
     END as SessionID,
     params.key
-    FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+    FROM  [TABLE_NAME],
     UNNEST(event_params) as params
     where event_name in ('page_view') and key ='ga_session_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
     )
@@ -65,7 +65,7 @@ for m in Config.months:
     END as pageurl,
         {Config.caseStatement},
     params.key
-    FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+    FROM  [TABLENAME] ,
     UNNEST(event_params) as params
     where event_name in ('page_view') and key ='page_location' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
     )
@@ -99,7 +99,7 @@ for m in Config.months:
     ELSE NULL
     END as SessionID,
     params.key
-    FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+    FROM  [TABLENAME] ,
     UNNEST(event_params) as params
     where event_name in ('purchase') and key ='ga_session_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
     )
@@ -117,7 +117,7 @@ for m in Config.months:
     ELSE NULL
     END as TransactionID,
     params.key
-    FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+    FROM  [TABLENAME],
     UNNEST(event_params) as params
     where event_name='purchase' and key='transactions_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
     )
@@ -140,7 +140,7 @@ for m in Config.months:
     GROUP BY Path,PathCategory
     
     """,
-        project_id='firebase-test-dev-286022',
+        project_id=[PROJECTID],
         credentials=credentials,
     )
 
@@ -231,7 +231,7 @@ for m in Config.months:
         ELSE NULL
         END as SessionID,
         params.key
-        FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+        FROM  {TABLENAME} ,
         UNNEST(event_params) as params
         where event_name in ('page_view') and key ='ga_session_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
         )
@@ -249,7 +249,7 @@ for m in Config.months:
         ELSE NULL
         END as pageurl,
         params.key
-        FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+        FROM  {TABLENAME},
         UNNEST(event_params) as params
         where event_name in ('page_view') and key ='page_location'  and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
         )
@@ -284,7 +284,7 @@ for m in Config.months:
         ELSE NULL
         END as SessionID,
         params.key
-        FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+        FROM  {TABLENAME} ,
         UNNEST(event_params) as params
         where event_name in ('purchase') and key ='ga_session_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
         )
@@ -303,7 +303,7 @@ for m in Config.months:
         ELSE NULL
         END as TransactionID,
         params.key
-        FROM  `firebase-test-dev-286022.analytics_242508648.events_202*` ,
+        FROM {TABLENAME} ,
         UNNEST(event_params) as params
         where event_name='purchase' and key='transactions_id' and date_trunc(parse_date('%Y%m%d',event_date),MONTH)='{m}'
         )
@@ -327,7 +327,7 @@ for m in Config.months:
         )
         Group by pathlength
         """,
-        project_id='firebase-test-dev-286022',
+        project_id={PROJECTID},
         credentials=credentials,
     )
 #Upload pathlength metrics to BigQuery
