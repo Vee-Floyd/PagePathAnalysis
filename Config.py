@@ -18,15 +18,15 @@ caseStatement='''
         END as pagecategory
         '''
 #BigQuery Project ID
-project_id='firebase-test-dev-286022'
+project_id=PROJECTID
 #Exclude checkout/confirmation pages based on url structure
 regexexclude = re.compile(
     r'REGEXTOREMOVECHECKOUTPAGES')
 #Shapley Value by Category destination table
 categoryDestinationTable='analytics_242508648.OnSitePathCategoryShapleyValues'
 #Shapley Value by page destination table
-mainDestinationTable='analytics_242508648.OnSitePathShapleyValues'
+mainDestinationTable={TABLENAME}
 #Pathlength metrics table
-PathLengthDestinationTable='analytics_242508648.OnSitePathLengthMetrics'
-SankeyTable='analytics_242508648.SankeyTable'
+PathLengthDestinationTable={TABLENAME}
+SankeyTable={TABLENAME}
 SankeyPagePathLevel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
