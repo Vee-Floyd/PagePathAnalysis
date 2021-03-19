@@ -21,7 +21,7 @@ caseStatement='''
 project_id='firebase-test-dev-286022'
 #Exclude checkout/confirmation pages based on url structure
 regexexclude = re.compile(
-    r'.*/checkout/onepage/success/.*|https://www.polywood.com/checkout/cart/|https://www.polywood.com/checkout/cart|Checkout|https://www.polywood.com/checkout/|https://www.polywood.com/checkout')
+    r'REGEXTOREMOVECHECKOUTPAGES')
 #Shapley Value by Category destination table
 categoryDestinationTable='analytics_242508648.OnSitePathCategoryShapleyValues'
 #Shapley Value by page destination table
